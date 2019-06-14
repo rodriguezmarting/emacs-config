@@ -56,6 +56,9 @@
     ;; https://github.com/clojure-emacs/cider
     cider
 
+    sesman
+
+
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
@@ -69,11 +72,25 @@
     ;; project navigation
     projectile
 
+    ;tree view for files
+    ztree
+
     ;; colorful parenthesis matching
     rainbow-delimiters
 
     ;; edit html tags like sexps
     tagedit
+
+    ;show visual representation of hex colors
+    rainbow-mode
+    
+    ;manipulate color hue saturation and brighness (use with rainbow-mode
+    kurecolor
+
+    ;monokai theme
+    monokai-theme
+
+    auto-complete
 
     ;; git integration
     magit))
@@ -106,12 +123,6 @@
 ;; Adding this code will make Emacs enter yaml mode whenever you open
 ;; a .yml file
 (add-to-list 'load-path "~/.emacs.d/vendor")
-
-
-;;;;
-;; Customization
-;;;;
-(global-visual-line-mode 1)
 
 
 
@@ -149,24 +160,58 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
+ '(compilation-message-face (quote default))
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
  '(custom-safe-themes
    (quote
-    ("9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" default)))
+    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" default)))
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))))
+ '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (rainbow-mode yasnippet-snippets auto-complete kurecolor status cider-decompile magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
+    (which-key helm ztree monokai-theme highlight-parentheses sesman rainbow-mode yasnippet-snippets auto-complete kurecolor status cider-decompile magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
+ '(weechat-color-list
+   (quote
+    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(load-theme 'zenburn)
+
+;;;;
+;; Customization
+;;;;
+(global-visual-line-mode 1)
+(load-theme 'monokai)
 
 (global-hl-line-mode 0)
 (require 'use-package)
 (use-package rainbow-mode
-             :hook (prog-mode . rainbow-mode))
+  :hook (prog-mode . rainbow-mode))
+
+(require 'helm-config)
+
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r b") 'helm-bookmars)
+(global-set-key (kbd "C-x m") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+(global-set-key (kbd "C-c C-r") 'cider-eval-region)
 
 
+(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
 
