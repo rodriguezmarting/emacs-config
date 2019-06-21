@@ -221,5 +221,7 @@
 (global-set-key (kbd "C-c G") #'helm-grepint-grep-root)
 
 (global-set-key (kbd "C-c j") #'cider-repl-clear-buffer)
+(global-set-key (kbd "C-c C-f") #'projectile-find-file)
+(global-set-key (kbd "C-c C-p") #'projectile-switch-project)
 
 (ac-config-default)
