@@ -179,7 +179,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (helm-grepint which-key helm ztree monokai-theme highlight-parentheses sesman rainbow-mode yasnippet-snippets auto-complete kurecolor status cider-decompile magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
+    (sass-mode helm-grepint which-key helm ztree monokai-theme highlight-parentheses sesman rainbow-mode yasnippet-snippets auto-complete kurecolor status cider-decompile magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(weechat-color-list
@@ -220,4 +220,6 @@
 (global-set-key (kbd "C-c g") #'helm-grepint-grep)
 (global-set-key (kbd "C-c G") #'helm-grepint-grep-root)
 
+(global-set-key (kbd "C-c j") #'cider-repl-clear-buffer)
 
+(ac-config-default)
