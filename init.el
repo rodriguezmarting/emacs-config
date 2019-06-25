@@ -75,7 +75,6 @@
     rainbow-delimiters
     ;show visual representation of hex colors
     rainbow-mode
-    sass-mode
     sesman
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -174,8 +173,8 @@
 (global-set-key (kbd "C-c g") #'helm-grepint-grep)
 (global-set-key (kbd "C-c G") #'helm-grepint-grep-root)
 
-(global-set-key (kbd "C-c j") #'cider-repl-clear-buffer)
+(global-set-key (kbd "C-c c") #'cider-repl-clear-buffer)
 (global-set-key (kbd "C-c f") #'projectile-find-file)
-(global-set-key (kbd "C-c c") #'projectile-switch-project)
+(global-set-key (kbd "C-c p") #'projectile-switch-project)
 
 (ac-config-default)
