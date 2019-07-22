@@ -45,7 +45,8 @@
 ;; manually with M-x package-install
 ;; Add in your own as you wish:
 (setq my-packages
-   '(auto-complete
+   '(ag
+     auto-complete
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     cider
@@ -54,6 +55,9 @@
     clojure-mode
     ;; extra syntax highlighting for clojure
     clojure-mode-extra-font-locking
+    exec-path-from-shell
+    ;; sintax linting
+    flycheck
     helm
     helm-grepint
     ;; allow ido usage in as many contexts as possible. see
@@ -75,11 +79,14 @@
     rainbow-delimiters
     ;show visual representation of hex colors
     rainbow-mode
+    sass-mode
     sesman
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
     ;; http://www.emacswiki.org/emacs/Smex
     smex
+    ;solarized theme
+    solarized-theme
     ;; edit html tags like sexps
     tagedit
     ;tree view for files
@@ -149,7 +156,12 @@
 ;; Customization
 ;;;;
 (global-visual-line-mode 1)
-(load-theme 'monokai)
+;(load-theme 'monokai)
+(load-theme 'solarized-dark t)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 (global-hl-line-mode 0)
 (require 'use-package)
@@ -177,4 +189,30 @@
 (global-set-key (kbd "C-c f") #'projectile-find-file)
 (global-set-key (kbd "C-c p") #'projectile-switch-project)
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+
 (ac-config-default)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(custom-safe-themes
+   (quote
+    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
+ '(package-selected-packages
+   (quote
+    (flycheck ag solarized-theme ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit monokai-theme magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell darktooth-theme company color-theme-sanityinc-tomorrow clojure-mode-extra-font-locking cider auto-complete)))
+ '(safe-local-variable-values
+   (quote
+    ((scss-mode
+      (css-indent-offset . 2))
+     (cider-figwheel-main-default-options . ":dev")
+     (cider-default-cljs-repl . figwheel-main)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
