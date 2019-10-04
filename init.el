@@ -55,6 +55,8 @@
     clojure-mode
     ;; extra syntax highlighting for clojure
     clojure-mode-extra-font-locking
+    ;; remove whitespaces automatically
+    ethan-wspace
     exec-path-from-shell
     ;; sintax linting
     flycheck
@@ -156,6 +158,7 @@
 ;; Customization
 ;;;;
 (global-visual-line-mode 1)
+(global-ethan-wspace-mode 1)
 ;(load-theme 'monokai)
 (load-theme 'solarized-dark t)
 
@@ -188,6 +191,7 @@
 (global-set-key (kbd "C-c c") #'cider-repl-clear-buffer)
 (global-set-key (kbd "C-c f") #'projectile-find-file)
 (global-set-key (kbd "C-c p") #'projectile-switch-project)
+(global-set-key (quote [f5]) #'helm-imenu-in-all-buffers)
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
@@ -200,10 +204,10 @@
  '(coffee-tab-width 2)
  '(custom-safe-themes
    (quote
-    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
+    ("9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
  '(package-selected-packages
    (quote
-    (flycheck ag solarized-theme ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit monokai-theme magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell darktooth-theme company color-theme-sanityinc-tomorrow clojure-mode-extra-font-locking cider auto-complete)))
+    (feature-mode ecukes ethan-wspace flycheck ag solarized-theme ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit monokai-theme magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell darktooth-theme company color-theme-sanityinc-tomorrow clojure-mode-extra-font-locking cider auto-complete)))
  '(safe-local-variable-values
    (quote
     ((scss-mode
