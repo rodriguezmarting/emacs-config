@@ -2,7 +2,23 @@
 ;; Packages
 ;;;;
 
-
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
 ;; This also sets the load path.
@@ -91,6 +107,7 @@
     solarized-theme
     ;; edit html tags like sexps
     tagedit
+    use-package
     ;tree view for files
     ztree))
 
@@ -160,14 +177,17 @@
 (global-visual-line-mode 1)
 (global-ethan-wspace-mode 1)
 ;(load-theme 'monokai)
-(load-theme 'solarized-dark t)
+;(load-theme 'solarized-dark t)
+(load-theme 'doom-spacegrey)
+(setq clojure-align-forms-automatically t)
+
+(require 'use-package)
 
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
 
 (global-hl-line-mode 0)
-(require 'use-package)
 (use-package rainbow-mode
   :hook (prog-mode . rainbow-mode))
 
@@ -204,13 +224,14 @@
  '(coffee-tab-width 2)
  '(custom-safe-themes
    (quote
-    ("9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "0598c6a29e13e7112cfbc2f523e31927ab7dce56ebb2016b567e1eff6dc1fd4f" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
+    ("d6f04b6c269500d8a38f3fabadc1caa3c8fdf46e7e63ee15605af75a09d5441e" default)))
  '(package-selected-packages
    (quote
-    (feature-mode ecukes ethan-wspace flycheck ag solarized-theme ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit monokai-theme magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell darktooth-theme company color-theme-sanityinc-tomorrow clojure-mode-extra-font-locking cider auto-complete)))
+    (doom-themes clj-refactor feature-mode ethan-wspace flycheck ag ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell company clojure-mode-extra-font-locking cider auto-complete)))
  '(safe-local-variable-values
    (quote
-    ((scss-mode
+    ((css-indent-offset . 2)
+     (scss-mode
       (css-indent-offset . 2))
      (cider-figwheel-main-default-options . ":dev")
      (cider-default-cljs-repl . figwheel-main)))))
