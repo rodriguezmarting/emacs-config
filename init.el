@@ -71,9 +71,14 @@ There are two things you can do about this warning:
     clojure-mode
     ;; extra syntax highlighting for clojure
     clojure-mode-extra-font-locking
+    ;; cool themes
+    doom
+    doom-themes
     ;; remove whitespaces automatically
     ethan-wspace
     exec-path-from-shell
+    ;; markdown live preview
+    flymd
     ;; sintax linting
     flycheck
     helm
@@ -227,7 +232,7 @@ There are two things you can do about this warning:
     ("d6f04b6c269500d8a38f3fabadc1caa3c8fdf46e7e63ee15605af75a09d5441e" default)))
  '(package-selected-packages
    (quote
-    (doom-themes clj-refactor feature-mode ethan-wspace flycheck ag ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell company clojure-mode-extra-font-locking cider auto-complete)))
+    (grip-mode flymd markdown-preview-eww markdown-mode+ ecukes gherkin-mode doom-themes clj-refactor feature-mode ethan-wspace flycheck ag ztree yasnippet-snippets which-key use-package tagedit status smex sass-mode rainbow-mode rainbow-delimiters projectile paredit magit kurecolor javap-mode ido-completing-read+ highlight-parentheses helm-grepint exec-path-from-shell company clojure-mode-extra-font-locking cider auto-complete)))
  '(safe-local-variable-values
    (quote
     ((css-indent-offset . 2)
